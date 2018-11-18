@@ -1,0 +1,88 @@
+.Header {
+    background-color: rgba(39, 19, 1, 0.876);
+    padding: 5px;
+    color: aliceblue;
+  }
+    
+  .error{
+    color: red;
+  }
+  
+  .Shoppinglist {
+    background-color:rgba(248, 247, 245, 0.76);
+    min-height: 400px;
+    padding-top: 30px;
+    min-height: 500px;
+    border-radius: 5px;
+    margin-top: 30px;
+  }
+  
+  .Shoppinglist input {
+    float: right;
+    border-radius: 5px;
+  }
+  
+  
+  .ShoppinglistForm {
+    background-color:#F5F5F5;
+    padding: 25px;
+  } 
+  
+  .ShoppinglistForm button {
+    float: right;
+  }
+ .Shoppinglists{
+     border: 0;
+ }
+  
+  .UpdateListForm {
+    background-color:rgba(245, 245, 245, 0.705);
+    padding: 25px;
+    min-height: 500px;
+  } 
+  
+  .UpdateListForm a {
+    float: right;
+  }
+  
+  .ViewShoppinglist {
+    background-color:#F5F5F5;
+    padding: 25px;
+    min-height: 700px;
+  }
+  
+  
+  .AddItemForm{
+    background-color:#F5F5F5;
+    max-width: 400px;
+    align-content: center;
+    float: right;
+  }
+  
+  .ListName{
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .AddListForm button{
+    background-color: rgba(39, 19, 1, 0.876);
+  }
+  
+  .ViewItems {
+    background-color:#F5F5F5;
+    min-height: 700px;
+  }
+  
+  .ViewItems input {
+    float: right;
+    border-radius: 5px;
+  }
+  
+  .NotFound {
+    background-color:#F5F5F5;
+    padding: 30px;
+  }
+   body{
+       background-image: url('./shop.jpeg');
+       background-size: 100%;
+   }
