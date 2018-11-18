@@ -15,6 +15,8 @@ export const postShoppinglist = (values) => {
       })
       dispatch(getAllShoppinglists())
     }).catch(error => {
+        console.log(error)
+        notify.show("Shoppinglist Exists")
         return error
     });
   }

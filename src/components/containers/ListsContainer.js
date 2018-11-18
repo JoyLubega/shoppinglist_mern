@@ -41,9 +41,10 @@ export class ListsContainer extends Component {
 
     // Create a shopping list.
     addShoppingList = (values) => {
+        console.log(values)
         this.props.postShoppinglist(values)
-        .then(()=>{
-            
+        .then((err)=>{
+            console.log(err)
             notify.show('Shopping list successfully created!');
         })
         .catch(e=>{

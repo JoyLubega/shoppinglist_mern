@@ -4,25 +4,27 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import RenderField from '../common/RenderField';
-import validate from '../common/Validation';
+import Validator from '../common/Validation';
 
 export const AddListForm = (props) => {
     const { handleSubmit, onSubmit } = props;
 
     return(
         <div>
+            
             <form className="AddListForm container" onSubmit={handleSubmit(onSubmit)}>
                 <h2><b>Create new shopping list:</b></h2>
                 <div className = "row">
                     <div className = "col-sm-10">
                         <Field
                             name = "name"
-                            placeholder="Name of shoppinglist"
+                            placeholder="Shoppinglist Name"
                             component = {RenderField}
+                            
                         />
                         <Field
                             name = "description"
-                            placeholder="Description"
+                            placeholder=" Shoppinglist Description"
                             component = {RenderField}
                         />
                     </div>
@@ -39,6 +41,6 @@ export const AddListForm = (props) => {
     )
 }
 export default reduxForm({
-    validate,
+    validate:Validator,
     form: 'AddListForm'
 })(AddListForm);
