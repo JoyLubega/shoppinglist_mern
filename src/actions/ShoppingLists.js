@@ -4,7 +4,7 @@ import * as types from './ActionTypes';
 import  {notify} from 'react-notify-toast';
 
 
-const ROOT_URL = "http://127.0.0.1:3000/api";
+const ROOT_URL = "https://joy-shoppinglist-node-api.herokuapp.com/api";
 
 export const postShoppinglist = (values) => {
   return dispatch => {
