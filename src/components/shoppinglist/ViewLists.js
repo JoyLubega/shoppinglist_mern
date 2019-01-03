@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
+import Buy from './buy';
 
 
 class ViewShoppingLists extends React.Component{
@@ -8,23 +9,57 @@ class ViewShoppingLists extends React.Component{
       super(props);
       this.state ={
           data: 'Buy',
-          strike:false
+          strike:false,
+          bought_lists:[]
         };
     }
 
 
-    btnClick=()=>{
-    if (this.state.strike ===false) {
-        this.setState({data: 'unBuy', strike:true});
-    }else{
-        this.setState({data: 'Buy', strike:false})
+    btnClick=(id)=>{
+        const {bought_lists} = this.state
+        if(bought_lists.includes(id)){
+            bought_lists.splice(bought_lists.indexOf(id),1);
+            this.setState({
+                bought_lists
+            })
+        }else{
+        this.setState({
+            bought_lists:[...this.state.bought_lists,id]
+        })
     }
+       
+        // console.log(this.props.shoppinglists)
+        // const arr = []
+        // this.props.shoppinglists.map((item)=>{
+        //     console.log(id)
+        //     console.log(item._id)
+        //     arr.push(item._id)
+        //     console.log(arr)
+            
+
+        //      if(id===item.id){
+        //          console.log('found')
+                if (this.state.strike ===false) {
+        
+                    this.setState({data: 'unBuy', strike:true});
+                }else{
+                    
+                    this.setState({data: 'Buy', strike:false})
+                }
+
+            //  }
+        //  })
+         
+        
+    
 }
        
     renderShoppinglists = () =>  (
         _.map(this.props.shoppinglists, shoppinglist => {
             const list_id = shoppinglist._id;
-            const strikeState = (this.state.strike === true) ? 'line-through': 'None' ;
+            console.log(this.state.bought_lists)
+            const strikeState = (this.state.bought_lists.includes(list_id)) ? 'line-through': 'None' ;
+            const text = (this.state.bought_lists.includes(list_id)) ? 'UnBuy': 'Buy';
             return (
                 <tr key={list_id}  style={{ 'textDecoration': strikeState}}>
                     <td  >{shoppinglist.name}</td>
@@ -50,6 +85,7 @@ class ViewShoppingLists extends React.Component{
                         
                         <button 
                             type="button" 
+                            id="del"
                             className="btn btn-outline-danger"
                             onClick={()=>{this.props.deleteOneShoppingList(shoppinglist._id)}} 
                             data-toggle="tooltip" 
@@ -58,7 +94,8 @@ class ViewShoppingLists extends React.Component{
                             ><i class="fas fa-trash"></i></button>
                     </td> 
                     <td>
-                    <button type="button"  className="btn btn-outline-warning" onClick={this.btnClick}>{this.state.data}</button>    
+                        
+                    <button id={list_id} type="button"  className="btn btn-outline-warning" onClick={()=>{this.btnClick(shoppinglist._id)}}>{text}</button>    
                     </td>                 
                 </tr>
                 
