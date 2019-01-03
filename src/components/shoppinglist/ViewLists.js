@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import Buy from './buy';
+
 
 
 class ViewShoppingLists extends React.Component{
@@ -27,37 +27,19 @@ class ViewShoppingLists extends React.Component{
             bought_lists:[...this.state.bought_lists,id]
         })
     }
-       
-        // console.log(this.props.shoppinglists)
-        // const arr = []
-        // this.props.shoppinglists.map((item)=>{
-        //     console.log(id)
-        //     console.log(item._id)
-        //     arr.push(item._id)
-        //     console.log(arr)
-            
-
-        //      if(id===item.id){
-        //          console.log('found')
+    
                 if (this.state.strike ===false) {
         
                     this.setState({data: 'unBuy', strike:true});
                 }else{
                     
                     this.setState({data: 'Buy', strike:false})
-                }
-
-            //  }
-        //  })
-         
-        
-    
+                }    
 }
        
     renderShoppinglists = () =>  (
         _.map(this.props.shoppinglists, shoppinglist => {
             const list_id = shoppinglist._id;
-            console.log(this.state.bought_lists)
             const strikeState = (this.state.bought_lists.includes(list_id)) ? 'line-through': 'None' ;
             const text = (this.state.bought_lists.includes(list_id)) ? 'UnBuy': 'Buy';
             return (
