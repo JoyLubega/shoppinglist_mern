@@ -1,31 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
+import store from '../App'
 
 
 
 class ViewShoppingLists extends React.Component{
     constructor(props){
       super(props);
+      let bought = JSON.parse(localStorage.getItem('values'))
       this.state ={
           data: 'Buy',
           strike:false,
-          bought_lists:[]
+          bought_lists:bought,
+          values:[]
+          
         };
     }
+    
+    componentDidMount() {
+        // this.hydrateStateWithLocalStorage();
+        //localStorage.setItem('values',this.state.bought_lists)
+     }
 
-
+    //  hydrateStateWithLocalStorage() {
+    //      console.log(this.state)
+    //       const { values} = this.state
+    //       if (localStorage.hasOwnProperty(values)) {
+    //         // get the key's value from localStorage
+    //         let value = localStorage.getItem(values);
+    
+    //         // parse the localStorage string and setState
+    //         try {
+    //           value = JSON.parse(value);
+    //           this.setState({ [values]: value });
+    //         } catch (e) {
+    //           // handle empty string
+    //           this.setState({ [values]: value });
+    //         }
+    //       }
+        
+    //   }
+    
     btnClick=(id)=>{
         const {bought_lists} = this.state
+        this.setState({bought_lists})
+       
+        
+        let bou= JSON.stringify(this.state.bought_lists);
+
         if(bought_lists.includes(id)){
             bought_lists.splice(bought_lists.indexOf(id),1);
             this.setState({
-                bought_lists
+                bought_lists,
+                values:bought_lists
             })
+            console.log(bought_lists)
+            
+            
+            // localStorage.setItem('values', bou)
+
         }else{
+            console.log(bought_lists)
         this.setState({
-            bought_lists:[...this.state.bought_lists,id]
+            bought_lists:[...bought_lists,id]
         })
+        console.log(bought_lists)
+        // localStorage.setItem('values', bou);
     }
     
                 if (this.state.strike ===false) {
@@ -39,6 +80,7 @@ class ViewShoppingLists extends React.Component{
        
     renderShoppinglists = () =>  (
         _.map(this.props.shoppinglists, shoppinglist => {
+            localStorage.setItem('values', JSON.stringify(this.state.bought_lists))
             const list_id = shoppinglist._id;
             const strikeState = (this.state.bought_lists.includes(list_id)) ? 'line-through': 'None' ;
             const text = (this.state.bought_lists.includes(list_id)) ? 'UnBuy': 'Buy';
@@ -77,7 +119,7 @@ class ViewShoppingLists extends React.Component{
                     </td> 
                     <td>
                         
-                    <button id={list_id} type="button"  className="btn btn-outline-warning" onClick={()=>{this.btnClick(shoppinglist._id)}}>{text}</button>    
+                    <button id={list_id} type="button"  className="btn btn-warning" onClick={()=>{this.btnClick(shoppinglist._id)}}>{text}</button>    
                     </td>                 
                 </tr>
                 
@@ -114,5 +156,7 @@ class ViewShoppingLists extends React.Component{
     }
   
   }
+  
+  
   
   export default ViewShoppingLists;

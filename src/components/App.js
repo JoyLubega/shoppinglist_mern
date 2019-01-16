@@ -13,7 +13,6 @@ import rootReducer from '../reducers';
 import * as types from '../actions/ActionTypes';
 
 import Header from './common/Header';
-
 import NotFound from './common/NotFound';
 import ListsContainer from './containers/ListsContainer'
 import UpdateListContainer from './containers/UpdateListContainer';
