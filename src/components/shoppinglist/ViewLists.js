@@ -12,7 +12,7 @@ class ViewShoppingLists extends React.Component{
       this.state ={
           data: 'Buy',
           strike:false,
-          bought_lists:bought,
+          bought_lists:bought || [],
           values:[]
           
         };
@@ -82,6 +82,7 @@ class ViewShoppingLists extends React.Component{
         _.map(this.props.shoppinglists, shoppinglist => {
             localStorage.setItem('values', JSON.stringify(this.state.bought_lists))
             const list_id = shoppinglist._id;
+            console.log(this.state.bought_lists)
             const strikeState = (this.state.bought_lists.includes(list_id)) ? 'line-through': 'None' ;
             const text = (this.state.bought_lists.includes(list_id)) ? 'UnBuy': 'Buy';
             return (
